@@ -1,0 +1,66 @@
+@charset "utf-8";
+*{padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container {
+	width: 100%;
+	padding: 10px;
+}
+   .gray
+{
+    border: #999 solid 1px;
+    background-color: #eee;
+    height: 50px;
+}
+[class*="lan"]
+{
+    float: left;
+    padding: 10px;
+}
+@media  screen and (min-width:769px)
+{
+.lan4
+{
+    width: 33.33333%;
+}
+.lan3
+{
+    width: 24.99999%;
+}
+.lan6
+{
+    width: 50%;
+}
+.lan1
+{
+    width: 8.33333%;
+}
+.lan2
+{
+    width: 16.66666%;
+}
+}
+@media screen and (max-width:769px)
+{
+     .llan2 {
+                width: 16.66666%;
+            }
+
+            .llan3 {
+                width: 24.99999%;
+            }
+
+            .llan6 {
+                width: 50%;
+            }
+
+            .llan8 {
+                width: 66.66666%;
+            }
+
+            .llan12 {
+                width: 100%;
+            }
+
+}
