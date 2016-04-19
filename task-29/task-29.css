@@ -1,0 +1,46 @@
+   .error {
+            color: red;
+            margin-left: 50px;
+        }
+
+        .has-error {
+            border: 1px red solid;
+        }
+
+        .gray {
+            color: gray;
+            margin-left: 50px;
+        }
+
+        .has-green {
+            color: limegreen;
+            margin-left: 50px;
+        }
+
+        .green {
+            border: 1px limegreen solid;
+        }
+div
+{
+   font-weight: bolder;
+    width: 640px;
+    margin: 200px auto;
+}
+input[type="text"]
+{
+    width: 500px;
+    height: 50px;
+    border-radius: 5px;
+}
+button
+{
+    height: 50px;
+    width: 80px;
+    border-radius: 5px;
+    background-color:#436EEE;
+    border: none;
+    color:#FFF;
+    font-weight: bolder;
+    font-size: 20px;
+    float: right;
+}
