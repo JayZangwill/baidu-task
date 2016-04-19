@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task-29</title>
+    <link rel="stylesheet" href="task-29.css">
+</head>
+
+<body>
+   <div>
+    名称:
+    <input type="text">
+    <button>验证</button>
+    <br>
+    <span class="gray">必填，长度为4~16个字符</span>
+    </div>
+    <script>
+        var input = document.getElementsByTagName("input")[0];
+        var sp = document.getElementsByTagName("span")[0];
+        var btn = document.getElementsByTagName("button")[0];
+        btn.onclick = function () {
+            var val = input.value;
+            var l=val.length;
+            var blen = 0;
+            for (var i = 0; i < l; i++) {
+                if ((val.charCodeAt(i) & 0xff00) != 0) {
+                    blen++;
+                }
+                blen++;
+            }
+                            if ( blen < 4 || blen > 16) {
+                                input.className = "has-error";
+                                sp.innerHTML="姓名长度在4~16,个中文占两个字符";
+                                sp.className="error";
+                            }
+                        else if(!val.match(/^\S+$/))
+                            {
+                                input.className = "has-error";
+                                sp.innerHTML="姓名不能为空";
+                                sp.className="error";
+                            }
+                        else if(val.match(/^\S+$/)&&blen >= 4 && blen <= 16)
+                            {
+                                input.className="green";
+                                sp.innerHTML="输入正确";
+                                sp.className="has-green";
+                            }
+        }
+    </script>
+</body>
+
+</html>
