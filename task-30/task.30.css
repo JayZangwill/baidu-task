@@ -1,0 +1,39 @@
+.gray {
+    color: gray;
+    display: block;
+}
+
+span {
+    display: none;
+}
+form
+{
+    text-align: center;
+}
+input
+{
+    margin: 20px 10px;
+    height: 50px;
+    width: 400px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+.error
+{
+     border: 1px solid red;
+}
+.green
+{
+    border: 1px solid limegreen;
+}
+button
+{
+    height: 50px;
+    width: 80px;
+    border-radius: 5px;
+    background-color:#436EEE;
+    border: none;
+    color:#FFF;
+    font-weight: bolder;
+    font-size: 20px;
+}
