@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task-30</title>
+    <link rel="stylesheet" href="task.30.css">
+</head>
+
+<body>
+    <form onsubmit=" return sub('click')">
+        <label>
+            名称:
+            <input type="text" name="username">
+            <br>
+            <span></span>
+        </label>
+        <label>
+            密码:
+            <input type="password" name="password">
+            <br>
+            <span></span>
+        </label>
+        <label>
+            密码确认:
+            <input type="password" name="repassword">
+            <br>
+            <span></span>
+        </label>
+        <label>
+            邮箱:
+            <input type="email" name="email">
+            <br>
+            <span></span> </label>
+        <label>
+            手机:
+            <input onkeyup="this.value=this.value.replace(/[^0-9\.]/,'')" onkeydown="this.value=this.value.replace(/[^0-9\.]/,'')" type="text" name="call">
+            <br>
+            <span></span>
+        </label>
+        <button>提交</button>
+    </form>
+    <script>
+        var username = document.getElementsByName("username")[0];
+        var btn = document.getElementsByTagName("button")[0];
+        var password = document.getElementsByName("password")[0];
+        var repassword = document.getElementsByName("repassword")[0];
+        var email = document.getElementsByName("email")[0];
+        var call = document.getElementsByName("call")[0];
+
+        function getSp(obj) {
+            while (true) {
+                if (obj.nextSibling.nodeName != "SPAN")
+                    obj = obj.nextSibling;
+                else return obj.nextSibling;
+            }
+
+        }
+        function check(input, info1, info2, fun,click) {
+            var sp = getSp(input);
+            input.onfocus = function () {
+                sp.innerHTML = info1;
+                sp.className = "gray";
+                sp.style.color = "gray";
+            }
+            input.onblur = function () {
+                if (fun(input.value)) {
+                    sp.innerHTML = "输入正确";
+                    sp.style.color = "limegreen";
+                    input.className="green";
+                    sp.style.display="block";
+                } else {
+                    sp.innerHTML = info2;
+                    sp.style.color = "red";
+                    input.className="error";
+                    sp.style.display="block";
+                }
+
+            }
+            if(click=="click")
+                input.onblur();
+        }
+        onload=sub;
+        function sub (click) {
+             var statu=true;
+            /*检查用户名*/
+            check(username, "必填，长度为4~16个字符", "姓名格式有误", function (obj) {
+                var l = obj.length;
+                var blen = 0;
+                /*判断是否为中文*/
+                for (var i = 0; i < l; i++) {
+                    if ((obj.charCodeAt(i) & 0xff00) != 0) {
+                        blen++;
+                    }
+                    blen++;
+                }
+                if (blen < 4 || blen > 16) {
+                    statu=false;
+                    return false;
+                } else if (!obj.match(/^\S+$/)) {
+                    statu=false;
+                    return false;
+                } else if (obj.match(/^\S+$/) && blen >= 4 && blen <= 16) {
+                    return true;
+                }
+            },click);
+            check(password, "必填,长度为4~16", "密码不可用", function (obj) {
+                if (obj.length >= 4 && obj.length <= 16&&obj.match(/^\S+$/)) {
+                    return true;
+                }
+                else {
+                    statu=false;
+                    return false;
+                }
+            },click);
+            check(repassword,"必填,要和上面密码一致","两次输入密码不一致",function(obj){
+                if (obj.length >= 4 && obj.length <= 16&&obj.match(/^\S+$/)&&obj==password.value) {
+                    return true;
+                }
+                else{
+                    statu=false;
+                    return false;
+                }
+            },click);
+            check(email,"按照正确邮箱格式输入邮箱","输邮箱有误",function(obj){
+                if(obj.match(/\w+@\w+.\w/))
+                    return true;
+                else false;
+            },click);
+            check(call,"输入手机号","手机号有误",function(obj){
+                if(obj.length==11)
+                    return true;
+                else{
+                    statu=false;
+                    return false;
+                }
+            },click);
+            if(!statu)
+                {
+                alert("提交失败");
+            return statu;
+                }
+        }
+    </script>
+</body>
+
+</html>
