@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>正则表达式之入门</title>
+	</head>
+
+	<body>
+		<div id="num-wrap">
+			<label>请输入一个手机号</label><input type="text" /><button>验证</button>
+		</div>
+		<div id="str-wrap">
+			<label>请输入多个单词，用空格隔开</label><input type="text" /><button>验证</button>
+		</div>
+		<script>
+			var numWrap = document.getElementById("num-wrap"),
+				numText = numWrap.getElementsByTagName("input")[0],
+				strWrap = document.getElementById("str-wrap");
+			numWrap.getElementsByTagName("button")[0].onclick = number;
+			strWrap.getElementsByTagName("button")[0].onclick = repeat;
+			/*判断是不是手机号*/
+			function number(num) {
+				var reg = /^[1][34578]\d{9}$/,
+					num = parseInt(numText.value);
+				reg.test(num) ? alert(true) : alert(false);
+			}
+			/*判断字符串是否相邻*/
+			function repeat() {
+				var strText = strWrap.getElementsByTagName("input")[0],
+					str = strText.value,
+					strArr = str.split(/\s+/g);
+				for(var i = 0, len = strArr.length; i < len; i++) {
+					if(strArr[i] === strArr[++i]){
+						alert(true);
+						return;
+					}
+				}
+				alert(false);
+			}
+		</script>
+	</body>
+
+</html>
