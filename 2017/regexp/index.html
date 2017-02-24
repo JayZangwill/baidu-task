@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>正则表达式之入门</title>
+</head>
+<body>
+	<script>
+		/*判断是不是手机号*/
+		function number(num){
+			var reg=/^[1][34578]\d{9}$/;
+			console.log(reg.test(num));
+		}
+		number(18812011232);
+		number(18812312);
+		number(12345678909);
+		console.log("=====字符串是否相邻=====");
+		function repeat(str){
+			var strArr=str.split(/\s+/g);
+			for(var i=0,len=strArr.length;i<len;i++){
+				if(strArr[i]===strArr[++i]){
+					return true;
+				}
+			}
+			return false;
+		}
+		console.log(repeat("foo foo bar"));
+		console.log(repeat("foo bar foo"));
+		console.log(repeat("foo  barbar bar"));
+	</script>
+</body>
+</html>
