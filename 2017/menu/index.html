@@ -57,9 +57,6 @@
 		<script>
 			var head = document.getElementById("head"),
 				menu = document.getElementById("menu");
-			document.body.oncontextmenu = function() {
-				return false;
-			}
 			document.onclick = function() {
 				menu.style.display = "none"
 			}
@@ -74,6 +71,7 @@
 					console.log(mouseY,menuHeight,winHeight)
 				mouseY + menuHeight > winHeight ? menu.style.top = mouseY - menuHeight + "px" : menu.style.top = mouseY + "px";
 				mouseX + menuWidth > winWidth ? menu.style.left = mouseX - menuWidth + "px" : menu.style.left = mouseX + "px";
+				return false;
 			}
 		</script>
 	</body>
