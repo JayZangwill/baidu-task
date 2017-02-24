@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义checkbox， radio样式</title>
+		<style>
+			/*css实现*/
+			.css-wrap,
+			.bg-wrap {
+				width: 200px;
+				margin: auto;
+			}
+			
+			.radio,
+			.checkbox{
+				position: relative;
+				width: 20px;
+				height: 20px;
+			}
+			
+			.radio:before,
+			.checkbox:before {
+				position: absolute;
+				display: block;
+				content: "";
+				width: 20px;
+				height: 20px;
+				border: 3px solid #666;
+				background-color: #fff;
+			}
+			
+			.radio:before {
+				top: -5px;
+				left: -5px;
+				border-radius: 50%;
+			}
+			
+			.radio:checked:before,
+			.checkbox:checked:before {
+				border-color: palevioletred;
+			}
+			
+			.radio:checked:after {
+				position: absolute;
+				display: block;
+				content: "";
+				width: 14px;
+				height: 14px;
+				top: 1px;
+				left: 1px;
+				border-radius: 50%;
+				background-color: palevioletred;
+			}
+			
+			.checkbox:before {
+				top: -4px;
+				left: -4px;
+			}
+			
+			.checkbox:checked:after {
+				position: absolute;
+				top: -5px;
+				display: block;
+				content: "\2714";
+				font-size: 20px;
+				color: palevioletred;
+			}
+			/*背景实现*/
+			.bg-radio,.bg-checkbox{
+				display: none;
+			}
+			.radio-label,.checkbox-label{
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background: url(checkbox.png);
+				
+			}
+			.radio-label{
+				background-position: 78px 42px;
+			}
+			.checkbox-label{
+				background-position: 78px 20px;
+			}
+			.bg-radio:checked+label{
+				background-position: 43px 42px;
+			}
+			.bg-checkbox:checked+label{
+				background-position: 43px 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="css-wrap">
+			<p>css完成(radio)：</p>
+			<input class="radio" type="radio" name="radio1" />
+			<input class="radio" type="radio" name="radio1" />
+			<p>css完成(checkbox)：</p>
+			<input class="checkbox" type="checkbox" name="checkbox1" />
+			<input class="checkbox" type="checkbox" name="checkbox1" />
+		</div>
+		<div class="bg-wrap">
+			<p>background完成(radio)：</p>
+			<input class="bg-radio" id="bg-radio1" type="radio" name="radio2" />
+			<label class="radio-label" for="bg-radio1"></label>
+			<input class="bg-radio" id="bg-radio2" type="radio" name="radio2" />
+			<label class="radio-label" for="bg-radio2"></label>
+			
+			<p>background完成(checkbox)：</p>
+			<input class="bg-checkbox" id="bg-checkbox1" type="checkbox" name="checkbox2" />
+			<label class="checkbox-label" for="bg-checkbox1"></label>
+			<input class="bg-checkbox" id="bg-checkbox2" type="checkbox" name="checkbox2" />
+			<label class="checkbox-label" for="bg-checkbox2"></label>
+		</div>
+	</body>
+
+</html>
