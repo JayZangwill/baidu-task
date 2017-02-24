@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>Document</title>
+		<title>自定义网页右键菜单</title>
 		<style>
 			body,
 			ul,
@@ -62,16 +62,15 @@
 			}
 			head.oncontextmenu = function(e) {
 				var mouseX = e.clientX,
-					mouseY = e.clientY,
+					mouseY = e.clientY, //鼠标坐标
 					winWidth = document.documentElement.clientWidth,
-					winHeight = document.documentElement.clientHeight;
-				menu.style.display = "block";
+					winHeight = document.documentElement.clientHeight;//可见区域宽高
+				menu.style.display = "block";//先设置为block以获取menu宽高
 				var menuWidth = menu.clientWidth,
-					menuHeight = menu.clientHeight;
-					console.log(mouseY,menuHeight,winHeight)
+					menuHeight = menu.clientHeight;//menu宽高
 				mouseY + menuHeight > winHeight ? menu.style.top = mouseY - menuHeight + "px" : menu.style.top = mouseY + "px";
 				mouseX + menuWidth > winWidth ? menu.style.left = mouseX - menuWidth + "px" : menu.style.left = mouseX + "px";
-				return false;
+				return false;//屏蔽右键菜单
 			}
 		</script>
 	</body>
