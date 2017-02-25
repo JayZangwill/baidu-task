@@ -4,32 +4,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>动态数据绑定（一）</title>
-		<style>
-			pre{
-				background: #eee;
-			}
-		</style>
 	</head>
 
 	<body>
-		<!--<div class="wrap">
-			<pre>
-//现在有两个对象
-let app1 = new Observer({
-	name: 'youngwind',
-	age: 25
-});
-
-let app2 = new Observer({
-	university: 'bupt',
-	major: 'computer'
-});
-			</pre>
-		</div>
-		<label>输入你想要修改或者访问的属性(修改属性时要按照 变量名:key:value的形式传值)</label>
-		<input id="value" type="text">
-		<button id="submit">提交</button>
-		<span id="result"></span>-->
 		<script>
 			function Observer(obj) {
 				this.data = obj;
@@ -42,6 +19,10 @@ let app2 = new Observer({
 					//因为因为for...in 循环会把对象原型链上的所有可枚举属性都循环出来，而我们想要的仅仅是这个对象本身拥有的属性，所以要用hasOwnProperty过滤。
 					if(obj.hasOwnProperty(key)) {
 						val = obj[key];
+						//如果值是对象再递归
+						if(val.constructor===Object){
+							new Observer(val);
+						}
 						this.convert(key, val);
 					}
 				}
@@ -53,11 +34,12 @@ let app2 = new Observer({
 					configurable: true,
 					get: function() {
 						console.log(`你访问了${key}`);
+						return val;
 					},
 					set: function(value) {
-						let oldKey = key;
+						console.log(`你修改了${key}的值为${value}`);
+						if(value === val) return;
 						key = value;
-						console.log(`你修改了${oldKey}的值为${value}`);
 					}
 				})
 			};
@@ -68,16 +50,14 @@ let app2 = new Observer({
 
 			let app2 = new Observer({
 				university: 'bupt',
-				major: 'computer'
+				major: {
+					title:111
+				}
 			});
-//			document.getElementById("submit").onclick=function(){
-//				var value=document.getElementById("value").value,
-//				valueArr=value.split(/\:/),
-//				len=value.length;
-//				if(len===2){
-//					
-//				}
-//			}
+			app1.data.name;
+			app1.data.age = 100;
+			app2.data.university;
+			app2.data.major = 'science';
 		</script>
 	</body>
 
