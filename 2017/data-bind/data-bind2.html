@@ -72,6 +72,9 @@ app1.data.age = 100;
 				};
 				//$watch实现
 				Observer.prototype.$watch = function(key, callback) {
+					if(typeof callback!=="function"){
+						throw Error("$watch's callback is no a function");
+					}
 					this.watchs[key] = callback;
 				};
 				window.Observer = Observer;
