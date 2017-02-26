@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>动态数据绑定（二）</title>
+	</head>
+
+	<body>
+		<textarea id="code" rows="40" cols="100">
+let app1 = new Observer({
+name: 'youngwind',
+age: 25
+});
+let app2 = new Observer({
+university: 'bupt',
+major: {
+title:111
+}
+});
+app1.$watch("age",function(newVal){
+document.getElementById("result").innerHTML=`年龄改变成了${newVal}`;
+});
+app1.data.age = 100;
+		</textarea>
+		<button id="test">测试</button>
+		<br />
+		<span id="result"></span>
+		<script>
+			(function() {
+				function Observer(obj) {
+					this.data = obj;
+					this.watch(obj);
+					this.watchs = {}; //用于保存监听对象
+				}
+				//将对象中的属性和属性值提取出来
+				Observer.prototype.watch = function(obj) {
+					let val;
+					for(let key in obj) {
+						//因为因为for...in 循环会把对象原型链上的所有可枚举属性都循环出来，而我们想要的仅仅是这个对象本身拥有的属性，所以要用hasOwnProperty过滤。
+						if(obj.hasOwnProperty(key)) {
+							val = obj[key];
+							//如果值是对象再递归
+							if(val.constructor === Object) {
+								new Observer(val);
+							}
+							this.convert(key, val);
+						}
+					}
+				};
+				//增加getter和setter
+				Observer.prototype.convert = function(key, val) {
+					let self = this;
+					Object.defineProperty(this.data, key, {
+						enumerable: true,
+						configurable: true,
+						get: function() {
+							console.log(`你访问了${key}`);
+							return val;
+						},
+						set: function(newVal) {
+							console.log(`你修改了${key}的值为${newVal}`);
+							if(newVal === val) return;
+							//如果设置的值是object的话，再给它加上监听
+							if(newVal.constructor === Object) {
+								new Observer(newVal);
+							}
+							val = newVal;
+							self.watchs[key](newVal, val);
+						}
+					})
+				};
+				//$watch实现
+				Observer.prototype.$watch = function(key, callback) {
+					this.watchs[key] = callback;
+				};
+				window.Observer = Observer;
+			})();
+			window.onload=function(){
+				document.getElementById("test").onclick=function(){
+					var code=document.getElementById("code").value;
+					eval(code);
+				}
+			}
+		</script>
+	</body>
+
+</html>
