@@ -73,6 +73,7 @@ app1.data.age = 100;
 				//$watch实现
 				Observer.prototype.$watch = function(key, callback) {
 					if(typeof callback!=="function"){
+						document.getElementById("result").innerHTML="$watch'的callback不是一个函数，请正确传参";
 						throw Error("$watch's callback is no a function");
 					}
 					this.watchs[key] = callback;
