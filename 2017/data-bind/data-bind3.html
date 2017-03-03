@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>动态数据绑定（二）</title>
+		<title>动态数据绑定（三）</title>
 	</head>
 
 	<body>
@@ -30,11 +30,11 @@ app1.data.age = 100;
 			(function() {
 				function Observer(obj) {
 					this.data = obj;
-					this.watch(obj);
+					this.extract(obj);
 					this.watchs = {}; //用于保存监听对象
 				}
 				//将对象中的属性和属性值提取出来
-				Observer.prototype.watch = function(obj) {
+				Observer.prototype.extract = function(obj) {
 					let val;
 					for(let key in obj) {
 						//因为因为for...in 循环会把对象原型链上的所有可枚举属性都循环出来，而我们想要的仅仅是这个对象本身拥有的属性，所以要用hasOwnProperty过滤。
@@ -66,6 +66,7 @@ app1.data.age = 100;
 								new Observer(newVal);
 							}
 							val = newVal;
+							//如果用户设置了这个key的监听，就调用用户传到$watch的callback
 							self.watchs[key] && self.watchs[key](newVal, val);
 						}
 					})
@@ -76,16 +77,29 @@ app1.data.age = 100;
 						document.getElementById("result").innerHTML = "$watch'的callback不是一个函数，请正确传参";
 						throw Error("$watch's callback is no a function");
 					}
+					//将用户传入的callback放到watchs里存
 					this.watchs[key] = callback;
 				};
 				window.Observer = Observer;
 			})();
-			window.onload = function() {
-				document.getElementById("test").onclick = function() {
-					var code = document.getElementById("code").value;
-					eval(code);
+			let app1 = new Observer({
+				name: 'youngwind',
+				age: 25
+			});
+			let app2 = new Observer({
+				university: 'bupt',
+				major: {
+					title: 111
 				}
-			}
+			});
+			app2.$watch("major", function(newVal) {
+				document.getElementById("result").innerHTML = `年龄改变成了${newVal}`;
+				console.log(111)
+			});
+			//				document.getElementById("test").onclick = function() {
+			//					var code = document.getElementById("code").value;
+			//					eval(code);
+			//				}
 		</script>
 	</body>
 

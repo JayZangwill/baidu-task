@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>动态数据绑定（四）</title>
+	</head>
+
+	<body>
+		<div id="app">
+			<p>姓名：{{user.name}}</p>
+			<p>年龄：{{user.age}}</p>
+		</div>
+		<script>
+			function Jay(options) {
+				//判断传入的el是否合法
+				if(options.el && typeof options.el === "string") {
+					this.el = document.querySelector(options.el);
+					//如果dom中没有这个el，抛出错误
+					if(this.el == null) {
+						throw Error(`${options.el} element no fount`);
+					}
+
+				}
+				if(options.data && options.data.constructor === Object) {
+					this.data = options.data;
+				}
+				this._replace();
+				return this;
+			}
+			Jay.prototype._replace = function(target) {
+				let brackets = /{{(.+?)}}/g,
+					contents, //双括号里面的变量，用作key
+					temp; //最终的数据
+				target = target || this.el.innerHTML
+				//寻找内容里包含双括号的
+				while(brackets.exec(target)) {
+					contents = RegExp.$1.split(".");
+					contents.forEach((item, i) => {
+						//第一次循环在data里面找，第二次往后的循环都在temp里找
+						temp = i === 0 ? this.data[item] : temp[item];
+					});
+					target = target.replace(/{{(.+?)}}/, temp);
+					if(/{{(.+?)}}/g.test(target)){
+						target=this._replace(target)
+					}
+					this.el.innerHTML = target;
+				}
+				return target
+			}
+			let vm = new Jay({
+				el: "#app",
+				data: {
+					user: {
+						name: "ddd",
+						age: 25
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>
