@@ -7,45 +7,88 @@
 	</head>
 
 	<body>
-		<div id="main" style="width: 600px;height:600px;"></div>
+		<div id="main" style="width: 600px;height:500px;"></div>
 		<script src="//cdn.bootcss.com/echarts/3.4.0/echarts.js"></script>
 		<script>
 			var main = echarts.init(document.getElementById("main"));
 			var options = {
-				title: {
+				title: [{
 					text: "What's my credit score ？",
 					subtext: "puerto Rico,%decrease on a year earlier",
 					textStyle: {
 						fontSize: 25
 					},
+
 					subtextStyle: {
 						fontSize: 20,
-						color:"#000"
+						color: "#000"
 					},
-					left:55
-				},
-				backgroundColor:"#d7e4eb",
-				color:['#33748a','#33b6e3'],
+					left: 55
+				}, {
+					text: "Sources:World Bank;Census Bureau;EIU",
+					textStyle: {
+						fontSize: 18,
+						color: 'rgb(90,93,97)',
+						fontWeight: "normal",
+					},
+					bottom: 5,
+					left: 50
+				}],
+				backgroundColor: "#d7e4eb",
+				color: ['#33748a', '#33b6e3'],
 				legend: {
 					data: ["Population", "GDP"],
-					top:70,
-					left:55
+					top: 70,
+					left: 55
 				},
-				xAxis: {
-					data: ["2006", "07", "08", "09", "10", "11", "13", "14", "15"]
-				},
-				yAxis: {
-					type:"value",
-					data: ["0", "1", "2", "3", "4"],
-					position: "right",
-					inverse: true,
-					splitLine:{
-						show:true,
-						lineStyle:["#fff"]
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'cross'
 					}
 				},
-				grid:{
-					top:100
+				xAxis: [{
+					data: ["2006", "07", "08", "09", "10", "11", "13", "14", "15"],
+					axisLine: {
+						onZero: false,
+						lineStyle: {
+							width: 3
+						}
+					}
+				}, {
+					axisLine: {
+						lineStyle: {
+							color: 'red',
+							width: 3
+						}
+					}
+				}],
+				yAxis: {
+					position: "right",
+					type: "value",
+					inverse: true,
+					axisLine: {
+						show: false
+					},
+					data: ["0", "1", "2", "3", "4"],
+					splitLine: {
+						show: true,
+						lineStyle: {
+							color: ["#fff"],
+							width: 3
+						}
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						textStyle: {
+							fontSize: 20
+						}
+					}
+				},
+				grid: {
+					top: 100
 				},
 				series: [{
 					name: 'Population',
