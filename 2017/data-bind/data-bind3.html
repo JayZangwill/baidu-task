@@ -79,6 +79,9 @@ app1.data.age = 100;
 					}
 					//将用户传入的callback放到watchs里存
 					this.watchs[key] = callback;
+					if(typeof this.data[key]==="object"){
+						console.log(123);
+					}
 				};
 				window.Observer = Observer;
 			})();
