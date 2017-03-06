@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>实现自定义的统计图表</title>
+	</head>
+
+	<body>
+		<div id="main" style="width: 600px;height:600px;"></div>
+		<script src="//cdn.bootcss.com/echarts/3.4.0/echarts.js"></script>
+		<script>
+			var main = echarts.init(document.getElementById("main"));
+			var options = {
+				title: {
+					text: "What's my credit score ？",
+					subtext: "puerto Rico,%decrease on a year earlier",
+					textStyle: {
+						fontSize: 25
+					},
+					subtextStyle: {
+						fontSize: 20,
+						color:"#000"
+					},
+					left:55
+				},
+				backgroundColor:"#d7e4eb",
+				color:['#33748a','#33b6e3'],
+				legend: {
+					data: ["Population", "GDP"],
+					top:70,
+					left:55
+				},
+				xAxis: {
+					data: ["2006", "07", "08", "09", "10", "11", "13", "14", "15"]
+				},
+				yAxis: {
+					type:"value",
+					data: ["0", "1", "2", "3", "4"],
+					position: "right",
+					inverse: true,
+					splitLine:{
+						show:true,
+						lineStyle:["#fff"]
+					}
+				},
+				grid:{
+					top:100
+				},
+				series: [{
+					name: 'Population',
+					type: 'bar',
+					data: [1, 4, 2, 3, 1, 2, 1, 2, 3]
+				}, {
+					name: 'GDP',
+					type: 'bar',
+					data: [3, 2, 1, 1, 2, 3, 1, 2, 3]
+				}]
+			}
+			main.setOption(options);
+		</script>
+	</body>
+
+</html>
