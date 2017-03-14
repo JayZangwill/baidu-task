@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+			}
+			
+			.wrapper {
+				min-height: 100%;
+				/* 等于footer的高度 */
+				margin-bottom: -50px;
+				word-break: break-all;
+			}
+			
+			.footer,
+			.push {
+				height: 50px;
+			}
+			.footer{
+				background-color: #000;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent
+		</div>
+		<footer class="footer"></footer>
+		<script>
+			function a(str){
+				return str.replace(/([A-Z])/g,"_$1").toLowerCase().slice(1)
+			}
+			console.log(a("HelloWorld"))
+		</script>
+	</body>
+
+</html>

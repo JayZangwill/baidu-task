@@ -16,7 +16,7 @@
 					text: "柱状图"
 				},
 				legend: {
-					data: ["销量1","销量2"]
+					data: ["销量1", "销量2"]
 				},
 				xAxis: {
 					data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
@@ -33,6 +33,30 @@
 				}]
 			}
 			main.setOption(options);
+
+			//			function a(str) {
+			//				let hash = {};
+			//				for(let i = 0, len = str.length; i < len; i++) {
+			//					!hash[str[i]] ? hash[str[i]] = 1 : hash[str[i]]++;
+			//				}
+			//				for(let key in hash) {
+			//					if(hash[key] === 1) {
+			//						return key;
+			//					}
+			//				}
+			//			}
+			function quicky(arr) {
+				if(arr.length <= 1) { return arr; }　
+				let left = [],
+					right = [],
+					midIndex = Math.floor(arr.length / 2),
+					mid = arr.splice(midIndex, 1)[0];
+				for(let i = 0; i < arr.length; i++) {
+					arr[i] < mid?left.push(arr[i]):right.push(arr[i]);
+				}
+				return quicky(left).concat([mid], quicky(right));
+			}
+			console.log(quicky([1, 3, 6, 2,4, 5, 6, 7]))
 		</script>
 	</body>
 

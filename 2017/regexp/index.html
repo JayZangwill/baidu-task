@@ -28,15 +28,8 @@
 			/*判断字符串是否相邻*/
 			function repeat() {
 				var strText = strWrap.getElementsByTagName("input")[0],
-					str = strText.value,
-					strArr = str.split(/\s+/g);
-				for(var i = 0, len = strArr.length; i < len; i++) {
-					if(strArr[i] === strArr[++i]){
-						alert(true);
-						return;
-					}
-				}
-				alert(false);
+					str = strText.value;
+				/(\w+)\s+\1/.test(str) ? alert(true) : alert(false);
 			}
 		</script>
 	</body>
